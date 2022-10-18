@@ -1,24 +1,37 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Prerequisites
 
-Things you may want to cover:
+Git
 
-* Ruby version
+MySQL
 
-* System dependencies
+Ruby
 
-* Configuration
+npm
 
-* Database creation
+React.js
 
-* Database initialization
+## Descripcion
 
-* How to run the test suite
+This is a web app that allows you to order pizza
 
-* Services (job queues, cache servers, search engines, etc.)
+## Setup
 
-* Deployment instructions
+Clone repository
+> git clone https://github.com/nabucopena/challenge_pizzeria && cd challenge_pizzeria
 
-* ...
+Install
+> bundle
+
+Create database and tables
+> rake db:create
+
+> rake db:migrate
+
+Load example pizzas in database 
+> mysql -u root challenge_pizzeria_development < example-pizzas.sql
+
+## Run appllication
+> rails s
+
