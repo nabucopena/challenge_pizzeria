@@ -11,7 +11,7 @@ function PizzasList(props){
       <ul>
         {props.pizzas.map((pizza) =>
           <li key={pizza.id}>
-            {pizza.name} - ${pizza.price} - <button onClick={() => {props.handleClick(pizza.id)}}> select </button>
+            {pizza.name} - ${pizza.price} - <button onClick={() => {props.handleClick(pizza)}}> select </button>
             <br/>
             <ul> {pizza.ingredients.map((ingredient) => <li> {ingredient} </li>)} </ul>
           </li>
@@ -43,7 +43,7 @@ function Ordering(props){
   const addItem = (it)=>{setOrderItems([...orderItems, it])}
   const saveOrder = (items) => {
     axios.post('http://localhost:3000/api/orders', {
-      order: {order_items_attributes: items.map((id) => JSON.stringify({pizza_id: id}))}
+      order: {order_items_attributes: items.map((item) => JSON.stringify({pizza_id: item.id}))}
     }).then(
       response => props.confirmed(response.data.id)
     )
