@@ -1,5 +1,9 @@
+import axios from 'axios';
+import useSWR from 'swr';
 import React, { useState } from 'react';
 import './App.css';
+
+const fetcher = url => axios.get(url).then(res => res.data)
 
 function PizzasList(props){
   return (
