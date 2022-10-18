@@ -17,3 +17,14 @@ function PizzasList(props){
   )
 }
 
+function OrderSummary(props){
+  return (
+    <div>
+      <h1> Order details </h1>
+      <ul>
+        {props.items.map((it) => <li key={it.id}> {it.name} </li>)}
+      </ul>
+      <button onClick={props.handleClick}> Confirm order </button>
+    </div>
+  )
+}
