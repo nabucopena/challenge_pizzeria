@@ -57,3 +57,10 @@ function Ordering(props){
   )
 }
 
+function Confirmed(props){
+  const { data, error } = useSWR(`http://localhost:3000/api/orders/${props.order_id}`, fetcher)
+  if (error) return <div>failed to load</div>
+  if (!data) return <div>loading...</div>
+
+  return <p> Your order is confirmed. Order summary: {data.join(", ")} </p>
+}
