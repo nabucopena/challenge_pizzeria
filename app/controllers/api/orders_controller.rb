@@ -4,17 +4,28 @@ module Api
       render json: Order.all
     end
 
+    def new
+      @order = Order.new
+      @order.order_items.build
+
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @order }
+      end
+    end
+
     def create
-      @order = Order.new(params)
+      @order = Order.new()
+      @order.order_items_attributes = params[:order][:order_items_attributes].map{|x| JSON.parse(x)}
       if @order.save
-       render status: 200
+       render json: @order 
       else
         render status: 401
       end
     end
 
     def show
-      render json: OrderItems.where(:order_id == params[:id])
+      render json: OrderItem.joins(:pizza).select(:name).where(:order_id => params[:id]).map{|x| x[:name]}
     end
   end
 end
