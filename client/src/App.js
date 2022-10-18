@@ -64,3 +64,16 @@ function Confirmed(props){
 
   return <p> Your order is confirmed. Order summary: {data.join(", ")} </p>
 }
+
+function App() {
+  const [page, setPage] = useState("ordering");
+  const [order, setOrder] = useState();
+  const confirmed = (order_id) => {
+    setPage("confirmed")
+    setOrder(order_id)
+  }
+  const component = page === "ordering" ? <Ordering confirmed = {confirmed}/> : <Confirmed order_id={order} />;
+  return component
+}
+
+export default App;
